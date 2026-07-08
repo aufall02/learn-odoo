@@ -1,4 +1,4 @@
-# 🚀 Odoo 18.0 Development & VoIP Learning Project
+# 🚀 Odoo 18.0 Development 
 
 Repositori ini dirancang sebagai lingkungan pengembangan (*development environment*) yang praktis untuk mempelajari pembuatan modul kustom **Odoo 18.0** menggunakan **Docker Compose**, sekaligus media belajar integrasi telepon **VoIP** menggunakan **Asterisk PBX**.
 

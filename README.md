@@ -60,32 +60,3 @@ Anda telah dibekali dengan 3 buku panduan super lengkap dalam Bahasa Indonesia u
    * Panduan mendalam tentang penulisan logika Python ORM, pembuatan field relasi, dan manipulasi UI menggunakan XML & XPath.
 3. [🐳 Odoo Docker & Dockerfile Guide](odoo_docker_handbook.md)
    * Penjelasan detail setiap properti di `docker-compose.yml` baris per baris, analogi Docker, dan cara membuat image Odoo kustom menggunakan Dockerfile.
-
----
-
-## 📞 Cetak Biru (Blueprint) Integrasi VoIP Asterisk
-
-Proyek selanjutnya adalah mengintegrasikan Odoo Community dengan **Asterisk PBX** untuk fitur telepon internal menggunakan modul **`voip_oca`** berbasis WebRTC.
-
-### Skema Alur Integrasi:
-```text
-[ Browser User di Odoo ] 
-          │ 
-          │ (SIP.js via Secure WebSocket)
-          ▼ 
-[ Port 8088 /ws di Container Asterisk ]
-          │
-          │ (Dialplan PJSIP)
-          ▼
-[ Jalur Telepon Luar (VoIP Provider / Sip Trunk) ]
-```
-
-### Langkah Konfigurasi Mendatang:
-1. **Tambahkan Service Asterisk** di `docker-compose.yml`:
-   Menggunakan image `andrius/asterisk` dengan port `5060` (SIP), `5038` (AMI), dan `8088` (WebSocket).
-2. **Konfigurasi Asterisk WebRTC**:
-   Mengaktifkan WebSocket di `http.conf` and membuat ekstensi WebRTC di `pjsip.conf`.
-3. **Instal Modul `voip_oca`**:
-   Mendownload modul dari repositori OCA `connector-telephony` ke folder `addons/` dan mengaktifkannya di Odoo.
-4. **Pasang HTTPS/SSL**:
-   Menggunakan Reverse Proxy (seperti Nginx atau Traefik) agar browser mengizinkan akses mikrofon saat diakses dari luar `localhost`.

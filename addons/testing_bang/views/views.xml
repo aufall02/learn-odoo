@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="testing_bang.list">
+      <field name="name">testing_bang list</field>
+      <field name="model">testing_bang.testing_bang</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="testing_bang">
+      <field name="name">testing_bang window</field>
+      <field name="res_model">testing_bang.testing_bang</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="testing_bang.action_server">
+      <field name="name">testing_bang server</field>
+      <field name="model_id" ref="model_testing_bang_testing_bang"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+     <menuitem name="Testing Bang" id="menu_root"/>
+    <menuitem name="Data" id="menu_data" parent="menu_root"/>
+    <menuitem name="Laporan" id="menu_report" parent="menu_root"/>
+
+    <menuitem name="Menu 1" id="menu_1" parent="menu_data" action="testing_bang"/>
+    <menuitem name="Menu 2" id="menu_2" parent="menu_data"/>
+  </data>
+</odoo>

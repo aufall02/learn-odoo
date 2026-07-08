@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================ -->
+    <!-- Tree View (List View) -->
+    <!-- ============================================ -->
+    <record id="todo_task_view_list" model="ir.ui.view">
+        <field name="name">todo.task.list</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <list string="To-Do Tasks" decoration-muted="is_done == True">
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <field name="deadline"/>
+                <field name="priority" widget="priority"/>
+                <field name="is_done"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============================================ -->
+    <!-- Form View -->
+    <!-- ============================================ -->
+    <record id="todo_task_view_form" model="ir.ui.view">
+        <field name="name">todo.task.form</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <form string="To-Do Task">
+                <header>
+                    <button name="action_mark_done" type="object"
+                            string="Mark as Done" class="btn-primary"
+                            invisible="is_done == True"/>
+                    <button name="action_mark_undone" type="object"
+                            string="Mark as To-Do"
+                            invisible="is_done == False"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Task Title..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="responsible_id"/>
+                            <field name="deadline"/>
+                        </group>
+                        <group>
+                            <field name="priority" widget="priority"/>
+                            <field name="is_done"/>
+                            <field name="tag_ids" widget="many2many_tags"
+                                   options="{'color_field': 'color'}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" placeholder="Describe your task here..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================================ -->
+    <!-- Search View -->
+    <!-- ============================================ -->
+    <record id="todo_task_view_search" model="ir.ui.view">
+        <field name="name">todo.task.search</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <search string="Search Tasks">
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <filter string="My Tasks" name="my_tasks"
+                        domain="[('responsible_id', '=', uid)]"/>
+                <filter string="Done" name="done"
+                        domain="[('is_done', '=', True)]"/>
+                <filter string="Not Done" name="not_done"
+                        domain="[('is_done', '=', False)]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Responsible" name="group_responsible"
+                            context="{'group_by': 'responsible_id'}"/>
+                    <filter string="Priority" name="group_priority"
+                            context="{'group_by': 'priority'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============================================ -->
+    <!-- Action -->
+    <!-- ============================================ -->
+    <record id="todo_task_action" model="ir.actions.act_window">
+        <field name="name">To-Do Tasks</field>
+        <field name="res_model">todo.task</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_not_done': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first To-Do task!
+            </p>
+            <p>
+                Organize your work with tasks, priorities, and deadlines.
+            </p>
+        </field>
+    </record>
+
+    <!-- ============================================ -->
+    <!-- Menu Items -->
+    <!-- ============================================ -->
+    <menuitem id="todo_menu_root"
+              name="To-Do"
+              sequence="10"
+              web_icon="my_first_module,static/description/icon.png"/>
+
+    <menuitem id="todo_menu_tasks"
+              name="Tasks"
+              parent="todo_menu_root"
+              action="todo_task_action"
+              sequence="10"/>
+</odoo>

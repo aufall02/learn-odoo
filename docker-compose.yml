@@ -1,0 +1,42 @@
+services:
+  odoo:
+    image: odoo:18.0
+    container_name: odoo-dev
+    env_file: .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8069:8069"
+      - "8072:8072"
+    volumes:
+      - odoo-filestore:/var/lib/odoo
+      - ./addons:/mnt/extra-addons
+      - ./python-libs:/opt/qiflibs
+      - ./config/odoo.conf:/etc/odoo/odoo.conf:ro
+    environment:
+      - PYTHONPATH=/opt/qiflibs
+    restart: unless-stopped
+    tty: true
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: odoo-db
+    env_file: .env
+    ports:
+      - "9000:5432"
+
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-odoo} -d ${POSTGRES_DB:-postgres}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  odoo-filestore:
+    name: odoo-dev-filestore
+  odoo-db-data:
+    name: odoo-dev-db

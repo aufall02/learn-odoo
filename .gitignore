@@ -27,5 +27,3 @@ Thumbs.db
 filestore/
 sessions/
 /python-libs/*
-/addons/muk*
-/addons/base_account*

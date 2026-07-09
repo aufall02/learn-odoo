@@ -26,6 +26,6 @@ Thumbs.db
 *.pyc
 filestore/
 sessions/
-/python-libs
+/python-libs/*
 /addons/muk*
 /addons/base_account*

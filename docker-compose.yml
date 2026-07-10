@@ -47,7 +47,8 @@ services:
     environment:
       - DATA_SOURCE_NAME="postgresql://exporter:odoo_dev_2024@odoo-db:5432/postgres?sslmode=disable"
     depends_on:
-      - postgres
+      postgres :
+          condition: service_healthy
     restart: unless-stopped
 
 volumes:

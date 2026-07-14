@@ -1,17 +1,17 @@
 <odoo>
-  <data>
+
     <!-- explicit list view definition -->
 
-    <record model="ir.ui.view" id="training_course_list">
-      <field name="name">training list</field>
-      <field name="model">training.course</field>
-      <field name="arch" type="xml">
-        <list>
-          <field name="name"/>
-          <field name="description"/>
-        </list>
-      </field>
-    </record>
+<!--    <record model="ir.ui.view" id="training_course_list">-->
+<!--      <field name="name">training list</field>-->
+<!--      <field name="model">training.course</field>-->
+<!--      <field name="arch" type="xml">-->
+<!--        <list>-->
+<!--          <field name="name"/>-->
+<!--          <field name="description"/>-->
+<!--        </list>-->
+<!--      </field>-->
+<!--    </record>-->
 
 
     <!-- actions opening views on models -->
@@ -31,6 +31,7 @@
         <list>
           <field name="name"/>
           <field name="description"/>
+          <field name="user_id"/>
         </list>
       </field>
     </record>
@@ -44,8 +45,13 @@
           <sheet>
             <group>
               <field name="name"/>
-              <field name="description"/>
+              <field name="user_id"/>
             </group>
+              <notebook>
+                <page string="Description" name="description">
+                  <field name="description"/>
+                </page>
+                </notebook>
           </sheet>
         </form>
       </field>
@@ -54,9 +60,11 @@
     <!-- Top menu item -->
     <menuitem name="Training Course"
               id="training_course_menu_action"
-              parent="setting_menu_categ"
+              parent="training_menu_categ"
               action="training_course_action"
               sequence="10"
+
+
     />
-  </data>
+
 </odoo>

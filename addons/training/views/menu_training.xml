@@ -2,12 +2,10 @@
 <odoo>
     <data>
         <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
-        <menuitem id="training_menu_root" name="Odoo Training" sequence="10"/>
+        <menuitem id="training_menu_root" name="Odoo Training" sequence="10"  web_icon="training,static/description/icon.png"/>
 
         <!-- This Menu Item Must have a parent -->
-        <menuitem id="training_menu_categ" name="Training" parent="training_menu_root" sequence="10"/>
-        <menuitem id="setting_menu_categ" name="Pengaturan" parent="training_menu_root" sequence="20"/>
-
+        <menuitem id="training_menu_categ" name="Training" parent="training_menu_root" sequence="10" />
     </data>
 
 </odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <record id="view_instructor_form" model="ir.ui.view">
+            <field name="name">instructor.form</field>
+            <field name="model">instructor</field>
+            <field name="arch" type="xml">
+                <form string="Instructor">
+                        <sheet>
+                            <group>
+                                <field name="name"/>
+                                <field name="street"/>
+                                <field name="email"/>
+                                <field name="mobile"/>
+                                <field name="expertise_ids" widget="many2many_tags"/>
+                            </group>
+                        </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_instructor_list" model="ir.ui.view">
+            <field name="name">instructor.list</field>
+            <field name="model">instructor</field>
+            <field name="arch" type="xml">
+                <tree string="Instructors">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="mobile"/>
+                    <field name="expertise_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action to open the instructor views -->
+        <record id="action_instructor" model="ir.actions.act_window">
+            <field name="name">Instructors</field>
+            <field name="res_model">instructor</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menu item for instructors -->
+        <menuitem id="menu_instructor" name="Instructors" parent="training_menu_categ" action="action_instructor" sequence="20"/>
+</odoo>

@@ -50,6 +50,24 @@ odoo/
 
 ---
 
+## Optional Python Libraries (Required for Accounting Features)
+
+Some accounting import/export features need extra Python packages:
+- `qifparse`
+- `openpyxl`
+- `ofxparse`
+- `lxml`
+
+If these libraries are missing, some accounting-related actions may fail even though Odoo starts normally.
+
+### Quick Install (local Docker setup)
+
+Run this command from the project root:
+
+```bash
+docker run --rm --network host -v ./python-libs:/opt/qiflibs python:3.12-slim pip install --target=/opt/qiflibs qifparse openpyxl ofxparse lxml
+```
+
 ## 📚 Buku Panduan Belajar yang Tersedia
 
 Anda telah dibekali dengan 3 buku panduan super lengkap dalam Bahasa Indonesia untuk mempercepat proses belajar:

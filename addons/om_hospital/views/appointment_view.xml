@@ -21,10 +21,11 @@
                     <group>
                         <group>
                             <field name="patient_id"/>
+                            <field name="booking_date"/>
                         </group>
                         <group>
                             <field name="appointment_time"/>
-                            <field name="booking_date"/>
+
                         </group>
                     </group>
                 </sheet>
@@ -60,6 +61,7 @@
             </p>
         </field>
     </record>
-    <menuitem id="menu_patient_appointment" name="Appointment" parent="menu_appointment" action="action_hospital_appointment"
+    <menuitem id="menu_patient_appointment" name="Appointment" parent="menu_appointment"
+              action="action_hospital_appointment"
               sequence="4"/>
 </odoo>

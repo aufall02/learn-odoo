@@ -6,6 +6,8 @@
         <field name="arch" type="xml">
             <list>
                 <field name="patient_id"/>
+                <field name="appointment_time"/>
+                <field name="booking_date"/>
             </list>
         </field>
     </record>
@@ -21,7 +23,8 @@
                             <field name="patient_id"/>
                         </group>
                         <group>
-
+                            <field name="appointment_time"/>
+                            <field name="booking_date"/>
                         </group>
                     </group>
                 </sheet>

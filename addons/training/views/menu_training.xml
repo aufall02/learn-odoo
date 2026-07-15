@@ -6,6 +6,8 @@
 
         <!-- This Menu Item Must have a parent -->
         <menuitem id="training_menu_categ" name="Training" parent="training_menu_root" sequence="10" />
+        <menuitem id="instructor_menu_categ" name="Instructors" parent="training_menu_root" sequence="20" />
+        <menuitem id="region_menu_categ" name="Region" parent="training_menu_root" sequence="30" />
     </data>
 
 </odoo>

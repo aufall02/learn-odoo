@@ -1,2 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_training_course,training.course,model_training_course,base.group_user,1,1,1,1
+access_training_session,training.session,model_training_session,base.group_user,1,1,1,1
+access_training_instructor,training.instructor,model_training_instructor,base.group_user,1,1,1,1
+access_training_expertise,training.expertise,model_training_expertise,base.group_user,1,1,1,1
+access_training_province,training.province,model_training_province,base.group_user,1,1,1,1
+access_training_city,training.city,model_training_city,base.group_user,1,1,1,1
+access_training_district,training.district,model_training_district,base.group_user,1,1,1,1
+access_training_village,training.village,model_training_village,base.group_user,1,1,1,1

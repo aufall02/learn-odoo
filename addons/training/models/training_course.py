@@ -10,7 +10,7 @@ class TrainingCourse(models.Model):
     name = fields.Char(string='Course Name', required=True)
     description = fields.Text(string='Course Description')
     user_id = fields.Many2one(comodel_name='res.users', string='Trainer', required=True)
-    session_id = fields.Many2one(comodel_name='training.session', inverse_name='course_id', string='Session',)
+    session_ids = fields.One2many(comodel_name='training.session', inverse_name='course_id', string='Sessions')
 
 
 class TrainingSession(models.Model):

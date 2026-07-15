@@ -2,16 +2,25 @@
 <odoo>
         <record id="view_instructor_form" model="ir.ui.view">
             <field name="name">instructor.form</field>
-            <field name="model">instructor</field>
+            <field name="model">training.instructor</field>
             <field name="arch" type="xml">
                 <form string="Instructor">
                         <sheet>
                             <group>
+                             <group>
                                 <field name="name"/>
+                                <field name="gender"/>
                                 <field name="street"/>
                                 <field name="email"/>
                                 <field name="mobile"/>
                                 <field name="expertise_ids" widget="many2many_tags"/>
+                            </group>
+                            <group>
+                                <field name="province_id"/>
+                                <field name="city_id"/>
+                                <field name="district_id"/>
+                                <field name="village_id"/>
+                            </group>
                             </group>
                         </sheet>
                 </form>
@@ -20,24 +29,24 @@
 
         <record id="view_instructor_list" model="ir.ui.view">
             <field name="name">instructor.list</field>
-            <field name="model">instructor</field>
+            <field name="model">training.instructor</field>
             <field name="arch" type="xml">
-                <tree string="Instructors">
+                <list string="Instructors">
                     <field name="name"/>
                     <field name="email"/>
                     <field name="mobile"/>
                     <field name="expertise_ids" widget="many2many_tags"/>
-                </tree>
+                </list>
             </field>
         </record>
 
         <!-- Action to open the instructor views -->
         <record id="action_instructor" model="ir.actions.act_window">
             <field name="name">Instructors</field>
-            <field name="res_model">instructor</field>
+            <field name="res_model">training.instructor</field>
             <field name="view_mode">list,form</field>
         </record>
 
         <!-- Menu item for instructors -->
-        <menuitem id="menu_instructor" name="Instructors" parent="training_menu_categ" action="action_instructor" sequence="20"/>
+        <menuitem id="menu_instructor" name="Instructors" parent="instructor_menu_categ" action="action_instructor" sequence="20"/>
 </odoo>

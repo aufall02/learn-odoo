@@ -23,4 +23,5 @@ jobs:
             cd "${{ vars.SERVER_APP_DIR }}"
             echo "Pulling latest changes from GitHub..."
             git pull origin main
+            docker compose restart odoo
             echo "Latest changes pulled successfully."

@@ -12,7 +12,7 @@
             <list>
                 <field name="name"/>
                 <field name="description"/>
-                <field name="user_id"/>
+                <field name="trainer_id"/>
             </list>
         </field>
     </record>
@@ -29,16 +29,20 @@
                     </group>
                     <notebook>
                         <page name="session" string="Sessions Course">
-                            <field name="session_ids" nolabel="1">
-                                <list string="Sessions" editable="bottom">
+                            <field name="session_ids"
+                                   nolabel="1"
+                                   context="{'default_course_id': id}"
+                                   form_view_ref="training.training_session_view_form">
+                                <list string="Sessions">
                                     <field name="name"/>
                                     <field name="start_date"/>
                                     <field name="duration"/>
                                     <field name="seats"/>
+                                    <field name="total_participant"/>
                                 </list>
                             </field>
                         </page>
-                        <page name="description" string="Keterangan">
+                        <page name="description" string="Description">
                             <field name="description"/>
                         </page>
                     </notebook>

@@ -30,3 +30,8 @@ class TrainingSession(models.Model):
     seats = fields.Integer(string='Seats', required=True)
 
     participant_ids = fields.Many2many(comodel_name='training.participant', string='Participants')
+    total_participant = fields.Integer(string='Total Participant', compute='_compute_total_participant')
+
+    def _compute_total_participant(self):
+        for session in self:
+            session.total_participant = len(session.participant_ids)

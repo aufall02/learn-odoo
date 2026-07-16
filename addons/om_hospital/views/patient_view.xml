@@ -25,7 +25,6 @@
                             <field name="name"/>
                             <field name="age"/>
                             <field name ="street"/>
-                            <field name="name"/>
                         </group>
                         <group>
                             <field name="gender"/>

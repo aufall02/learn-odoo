@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from email.policy import default
 
 from odoo import models, fields
 
@@ -8,13 +9,17 @@ class HospitalPatient(models.Model):
     _inherit = ['mail.thread','mail.activity.mixin']
     _description = 'Hospital Patient'
 
+
     name = fields.Char(string='Patient Name', tracking=True)
-    ref = fields.Char(string='Reference', tracking=True)
+    ref = fields.Char(string='Reference',
+                      tracking=True,
+                      default=lambda self: self.env['ir.sequence'].next_by_code('hospital.patient')
+                      )
     age = fields.Integer(string='Age', tracking=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')],
                               string='Gender',
                               tracking=True,
                               default='female')
     active = fields.Boolean(string='active', default=True, tracking=True)
-
+    street = fields.Char(string='alamat')
 

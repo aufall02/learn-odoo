@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_training_participant_list" model="ir.ui.view">
+        <field name="name">training.participant.list</field>
+        <field name="model">training.participant</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="street"/>
+                <field name="mobile"/>
+                <field name="email"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_training_participant_form" model="ir.ui.view">
+        <field name="name">training.participant.form</field>
+        <field name="model">training.participant</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="image_1920" widget="image" class="oe_avatar"/>
+                <group name="personal_information" string="Personal Information">
+                    <group>
+                        <field name="name"/>
+                        <field name="gender"/>
+                        <field name="email"/>
+                    </group>
+                    <group>
+                        <field name="place_of_birth"/>
+                        <field name="date_of_birth"/>
+                        <field name="mobile"/>
+                    </group>
+                </group>
+                <group name="address_information" string="Address Information">
+                    <group colspan="4">
+                        <field name="street"/>
+                    </group>
+                    <group>
+                        <field name="province_id"/>
+                        <field name="city_id" domain="[('province_id', '=', province_id)]"/>
+                    </group>
+                    <group>
+                        <field name="district_id" domain="[('city_id', '=', city_id)]"/>
+                        <field name="village_id" domain="[('district_id', '=', district_id)]"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="education"/>
+                        <field name="is_married"/>
+                    </group>
+                    <group>
+                        <field name="occupation"/>
+                    </group>
+                </group>
+                <group name="spouse_information" string="Spouse Information"
+                invisible="[('is_married', '=', False)]">
+                    <group>
+                        <field name="spouse_name"/>
+                        <field name="spouse_phone"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="participant_action" model="ir.actions.act_window">
+        <field name="name">Participants</field>
+        <field name="res_model">training.participant</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first participant!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="participant_menu_action" name="Participants" parent="training_menu_categ"
+              action="participant_action" sequence="20"/>
+</odoo>

@@ -142,6 +142,7 @@
     </record>
 
     <!-- Menu item for provinces -->
+    <menuitem id="region_menu_categ" name="Regions" parent="setting_menu_categ" sequence="10"/>
     <menuitem id="province_menu" name="Provinces" parent="region_menu_categ" action="action_province" sequence="30"/>
     <!-- Menu item for cities -->
     <menuitem id="city_menu" name="Cities" parent="region_menu_categ" action="action_city" sequence="40"/>

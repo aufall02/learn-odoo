@@ -22,11 +22,12 @@
                         <group>
                             <field name="patient_id"/>
                             <field name="gender"/>
+                            <field name="age"/>
+                            <field name="street"/>
                             <field name="booking_date"/>
                         </group>
                         <group>
                             <field name="appointment_time"/>
-
                         </group>
                     </group>
                 </sheet>

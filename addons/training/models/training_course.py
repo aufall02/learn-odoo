@@ -9,16 +9,24 @@ class TrainingCourse(models.Model):
 
     name = fields.Char(string='Course Name', required=True)
     description = fields.Text(string='Course Description')
-    user_id = fields.Many2one(comodel_name='res.users', string='Trainer', required=True)
+    trainer_id = fields.Many2one(comodel_name='training.instructor', string='Trainer', required=True)
     session_ids = fields.One2many(comodel_name='training.session', inverse_name='course_id', string='Sessions')
 
 
 class TrainingSession(models.Model):
     _name = 'training.session'
     _description = 'training.session'
+    
+    instructor_id = fields.Many2one(related='course_id.trainer_id', string='Instructor', readonly=True)
+    instructor_phone = fields.Char(string='Instructor Phone', related='instructor_id.mobile', readonly=True)
+    instructor_mail = fields.Char(string='Instructor Email', related='instructor_id.email', readonly=True)
+    instructor_gender = fields.Selection(related='instructor_id.gender', readonly=True)
+
     name = fields.Char(string='Session Name', required=True)
     description = fields.Text(string='Session Description')
     course_id = fields.Many2one(comodel_name='training.course', required=True)
     start_date = fields.Datetime(string='Start Date', required=True)
     duration = fields.Integer(string='Duration', required=True)
     seats = fields.Integer(string='Seats', required=True)
+
+    participant_ids = fields.Many2many(comodel_name='training.participant', string='Participants')

@@ -27,6 +27,8 @@ Long description of module's purpose
         'views/training_course.xml',
         "views/instructor.xml",
         "views/region.xml",
+        "views/participant.xml",
+        "views/training_session.xml",
         'views/views.xml',
         'views/templates.xml',
     ],

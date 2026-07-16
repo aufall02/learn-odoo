@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="training_session_view_list" model="ir.ui.view">
+            <field name="name">training.session.view.list</field>
+            <field name="model">training.session</field>
+            <field name="arch" type="xml">
+                <list>
+                    <!-- Add your fields here -->
+                    <field name="start_date"/>
+                    <field name="name"/>
+                    <field name="duration"/>
+                    <field name="seats"/>
+                    <field name="instructor_id"/>
+                </list>
+            </field>
+        </record>
+        <!-- training.session form view -->
+        <record id="training_session_view_form" model="ir.ui.view">
+            <field name="name">training.session.view.form</field>
+            <field name="model">training.session</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group string="Course Information">
+                            <group>
+                                <field name="start_date"/>
+                                <field name="name"/>
+                                <field name="course_id"/>
+                            </group>
+                            <group>
+                                <field name="duration"/>
+                                <field name="seats"/>
+                            </group>
+                            <group name="instructor" string="Data Instructor">
+                                <group>
+                                    <field name="instructor_id"/>
+                                    <field name="instructor_gender"/>
+                                </group>
+                                <group>
+                                    <field name="instructor_phone"/>
+                                    <field name="instructor_mail"/>
+                                </group>
+
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Participants">
+                                <field name="participant_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="gender"/>
+                                        <field name="mobile"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="training_session_action" model="ir.actions.act_window">
+            <field name="name">Training Sessions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">training.session</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="training_sessions" name="Training Sessions" parent="training_menu_categ"
+                  action="training_session_action" sequence="30"/>
+    </data>
+</odoo>

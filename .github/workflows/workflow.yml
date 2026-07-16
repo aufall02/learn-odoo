@@ -9,6 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: odoo
 
     steps:
       - name: Deploy on server via SSH

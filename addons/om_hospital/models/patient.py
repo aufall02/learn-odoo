@@ -13,8 +13,7 @@ class HospitalPatient(models.Model):
     name = fields.Char(string='Patient Name', tracking=True)
     ref = fields.Char(string='Reference',
                       tracking=True,
-                      default=lambda self: self.env['ir.sequence'].next_by_code('hospital.patient')
-                      )
+                      default=lambda self: 'REF' + str(len(self.env['hospital.patient'].sudo().search([])) + 1).zfill(4))
     age = fields.Integer(string='Age', tracking=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')],
                               string='Gender',

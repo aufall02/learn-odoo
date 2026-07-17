@@ -7,7 +7,7 @@
             <list decoration-success="gender == 'male'">
                 <field name="patient_id"/>
                 <field name="appointment_time"/>
-                <field name="booking_date"/>
+                <field name="booking_date" optional="show"/>
                 <field name="activity_ids" widget="list_activity"/>
                 <field name="status" decoration-info="status == 'draft'" decoration-success="status == 'done'"
                        decoration-warning="status == 'in_consultation'" decoration-danger="status == 'cancel'"

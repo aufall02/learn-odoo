@@ -30,13 +30,20 @@ class HospitalAppointment(models.Model):
         ('in_consultation', 'In Consultation'),
         ('done', 'Done'),
         ('cancel', 'Cancelled')
-    ], string='Status', default='draft', required=True)
+    ], string='Status', default='draft', required=True , tracking=True)
+    testing = fields.Char(string='Testing', default='Default Testing Value')
 
     @api.onchange('patient_id')
     def onchange_patient_id(self):
         self.ref = self.patient_id.ref
 
     def action_test(self):
+        self.activity_schedule(
+            'mail.mail_activity_data_todo',
+            summary='Testing Button Diklik!',
+            note='Button action_test berhasil dijalankan',
+            user_id=self.env.user.id,
+        )
         return {
             'effect': {
                 'fadeout':'slow',

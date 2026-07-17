@@ -5,10 +5,11 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <list decoration-success="gender == 'male'">
-                <field name="patient_id"/>
+                <field name="patient_id" />
                 <field name="appointment_time"/>
                 <field name="booking_date" optional="show"/>
                 <field name="activity_ids" widget="list_activity"/>
+                <field name="testing" widget="CopyClipboardChar"/>
                 <field name="status" decoration-info="status == 'draft'" decoration-success="status == 'done'"
                        decoration-warning="status == 'in_consultation'" decoration-danger="status == 'cancel'"
                        widget="badge"/>
@@ -36,6 +37,7 @@
                     <group>
                         <group>
                             <field name="patient_id"/>
+                            <field name="testing"/>
                             <field name="ref"/>
                             <field name="gender"/>
                             <field name="age"/>

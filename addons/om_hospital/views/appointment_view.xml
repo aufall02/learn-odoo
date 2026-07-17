@@ -4,10 +4,13 @@
         <field name="name">hospital.appointment.list</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <list>
+            <list decoration-success="gender == 'male'">
                 <field name="patient_id"/>
                 <field name="appointment_time"/>
                 <field name="booking_date"/>
+                <field name="status" decoration-info="status == 'draft'" decoration-success="status == 'done'"
+                       decoration-warning="status == 'in_consultation'" decoration-danger="status == 'cancel'"
+                       widget="badge"/>
             </list>
         </field>
     </record>

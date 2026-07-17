@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-from email.policy import default
-
-from odoo import models, fields
+from datetime import date
+from odoo import models, fields, api
 
 
 class HospitalPatient(models.Model):
@@ -11,14 +10,24 @@ class HospitalPatient(models.Model):
 
 
     name = fields.Char(string='Patient Name', tracking=True)
+    date_of_birth = fields.Date(string='Date of Birth')
     ref = fields.Char(string='Reference',
                       tracking=True,
                       default=lambda self: 'REF' + str(len(self.env['hospital.patient'].sudo().search([])) + 1).zfill(4))
-    age = fields.Integer(string='Age', tracking=True)
+    age = fields.Integer(string='Age', compute='_compute_age', tracking=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')],
                               string='Gender',
                               tracking=True,
                               default='female')
     active = fields.Boolean(string='active', default=True, tracking=True)
-    street = fields.Char(string='alamat')
+    street = fields.Char(string='Address')
+    appointment_id = fields.Many2one('hospital.appointment', string='Appointment')
 
+    @api.depends('date_of_birth')
+    def _compute_age(self):
+        for rec in self:
+            if rec.date_of_birth:
+                today = date.today()
+                rec.age = today.year - rec.date_of_birth.year
+            else:
+                rec.age = 1

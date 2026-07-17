@@ -18,9 +18,21 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <header>
+                        <field name="status" widget="statusbar"
+                               statusbar_visible="draft,in_consultation,done,cancel"
+                               options="{'clickable': '1'}"
+                               nollabel="1"/>
+                    </header>
+                    <oe_title>
+                        <h2>
+                            <field name="priority" widget="priority" class="mr-3 mb-3"/>
+                        </h2>
+                    </oe_title>
                     <group>
                         <group>
                             <field name="patient_id"/>
+                            <field name="ref"/>
                             <field name="gender"/>
                             <field name="age"/>
                             <field name="street"/>
@@ -28,8 +40,24 @@
                         </group>
                         <group>
                             <field name="appointment_time"/>
+                            <button name="action_test" string="Test Action" type="object" class="oe_highlight"
+                                    confirm="Are you sure you want to test this action?"
+                                    help="This will test the action"/>
+                            <button name="%(om_hospital.action_hospital_patient)d" string="Button Patient" type="action"
+                                    class="oe_highlight"
+                                    confirm="Are you sure you want to navigate to the patient form?"
+                                    help="This will navigate to the patient form"/>
+
                         </group>
+
                     </group>
+                    <notebook>
+                        <page name="prescription" string="Prescription">
+                            <field name="prescription"/>
+                        </page>
+                        <page name="pharmacy" string="Pharmacy">
+                        </page>
+                    </notebook>
                 </sheet>
                 <chatter>
                     <field name="message_follower_ids"/>

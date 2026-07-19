@@ -27,9 +27,10 @@
             <form>
                 <sheet>
                     <header>
-                    <button action="action_in_consultation" string="In Consultation" type="object"  status="draft"/>
-                    <button action="action_done" string="Mark as Done" type="object" status="in_consultation"/>
-                    <button action="action_cancel" string="Cancel" type="object" status="draft,in_consultation" />
+                    <button name="action_in_consultation" string="In Consultation" type="object"  status="draft"/>
+                    <button name="action_done" string="Mark as Done" type="object" status="in_consultation" 
+                    data_hotkey="v"/>
+                    <button name="action_cancel" string="Cancel" type="object" status="draft,in_consultation" />
                         <field name="status" widget="statusbar"
                                statusbar_visible="draft,in_consultation,done"
                                options="{'clickable': '1'}"

@@ -32,7 +32,7 @@ class HospitalAppointment(models.Model):
         ('cancel', 'Cancelled')
     ], string='Status', default='draft', required=True , tracking=True)
     # testing = fields.Char(string='Testing', default='Default Testing Value')
-    doctor_id = fields.Many2one('res.user', string='Doctor')
+    doctor_id = fields.Many2one('res.users', string='Doctor')
 
     @api.onchange('patient_id')
     def onchange_patient_id(self):

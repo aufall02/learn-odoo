@@ -5,7 +5,7 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <list>
-            <field name="image" widget="image"/>
+           
                 <field name="name"/>
                 <field name="age"/>
                 <field name="ref"/>
@@ -23,6 +23,7 @@
                 <sheet>
                     <group>
                         <group>
+                         <field name="image" widget="image"/>
                             <field name="name"/>
                             <field  name="date_of_birth"/>
                             <field name="age"/>

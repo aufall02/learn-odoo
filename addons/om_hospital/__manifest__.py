@@ -14,7 +14,7 @@
         'views/female_patient_view.xml',
         'views/appointment_view.xml',
     ],
-    'depends': ['base','mail'],
+    'depends': ['base','mail','product'],
     'demo': [],
     'installable': True,
     'auto_install': True,

@@ -6,10 +6,13 @@
         <field name="arch" type="xml">
             <list decoration-success="gender == 'male'">
                 <field name="patient_id" />
+                <field name="ref" optional="show" />
+                <field name="doctor_id" widget="many2one_avatar_user"/>
+                <field name="gende" optional="hide"/>
                 <field name="appointment_time"/>
                 <field name="booking_date" optional="show"/>
                 <field name="activity_ids" widget="list_activity"/>
-                <field name="testing" widget="CopyClipboardChar"/>
+                <!-- <field name="testing" widget="CopyClipboardChar"/> -->
                 <field name="status" decoration-info="status == 'draft'" decoration-success="status == 'done'"
                        decoration-warning="status == 'in_consultation'" decoration-danger="status == 'cancel'"
                        widget="badge"/>

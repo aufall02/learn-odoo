@@ -4,7 +4,7 @@
         <field name="name">hospital.appointment.list</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <list decoration-success="gender == 'male'" sample="1">
+            <list decoration-success="gender == 'male'" sample="1" multi_edit="1">
                 <field name="patient_id" />
                 <field name="ref" optional="show" />
                 <field name="doctor_id" widget="many2one_avatar_user"/>

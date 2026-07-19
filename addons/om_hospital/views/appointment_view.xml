@@ -63,10 +63,10 @@
                     </group>
                     <notebook>
                         <page name="prescription" string="Prescription">
-                            <field name="prescription"/>
+                            <field name="prescription" options="{'colaborative':true}"/>
                         </page>
                         <page name="pharmacy" string="Pharmacy">
-                        </page>
+                        </page>s
                     </notebook>
                 </sheet>
                 <chatter>

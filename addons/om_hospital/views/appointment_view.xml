@@ -29,10 +29,10 @@
             <form>
                 <sheet>
                     <header>
-                        <button name="action_in_consultation" string="In Consultation" type="object" states="draft"/>
-                        <button name="action_done" string="Mark as Done" type="object" states="in_consultation"
+                        <button name="action_in_consultation" string="In Consultation" type="object" invisible="status != 'draft'"/>
+                        <button name="action_done" string="Mark as Done" type="object" invisible="status != 'in_consultation'"
                                 data-hotkey="v"/>
-                        <button name="action_cancel" string="Cancel" type="object" states="draft,in_consultation"/>
+                        <button name="action_cancel" string="Cancel" type="object" invisible="status not in ('draft', 'in_consultation')"/>
                         <field name="status" widget="statusbar"
                                statusbar_visible="draft,in_consultation,done"
                                options="{'clickable': '1'}"/>

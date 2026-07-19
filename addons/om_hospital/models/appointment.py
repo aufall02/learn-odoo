@@ -64,7 +64,7 @@ class HospitalAppointment(models.Model):
             rec.status = "done"
     def action_cancel(self):
         for rec in self:
-            rec.status = "done"
+            rec.status = "cancel"
 
 class AppointmentPharmacyLines(models.Model):
     _name   = "appointment.pharmacy.lines"

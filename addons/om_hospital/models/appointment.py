@@ -54,3 +54,14 @@ class HospitalAppointment(models.Model):
 
             }
         }
+
+    def action_in_consultation(self):
+        for rec in self:
+            rec.status = "in_consultation"
+    def action_done(self):
+        for rec in self:
+            rec.status = "done"
+    def action_cancel(self):
+        for rec in self:
+            rec.status = "done"
+

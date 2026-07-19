@@ -22,6 +22,7 @@ class HospitalPatient(models.Model):
     active = fields.Boolean(string='active', default=True, tracking=True)
     street = fields.Char(string='Address')
     appointment_id = fields.Many2one('hospital.appointment', string='Appointment')
+    image = fields.Image(string="Image")
 
     @api.depends('date_of_birth')
     def _compute_age(self):

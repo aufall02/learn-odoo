@@ -33,7 +33,7 @@ class HospitalAppointment(models.Model):
     ], string='Status', default='draft', required=True , tracking=True)
     # testing = fields.Char(string='Testing', default='Default Testing Value')
     doctor_id = fields.Many2one('res.users', string='Doctor')
-    pharmacy_line_ids = fields.One2many('appointment.pharmacy.lines','appointment_id',string="Pharmacy Lines")
+    pharmacy_line_ids = fields.Many2one('appointment.pharmacy.lines','appointment_id',string="Pharmacy Lines")
 
     @api.onchange('patient_id')
     def onchange_patient_id(self):

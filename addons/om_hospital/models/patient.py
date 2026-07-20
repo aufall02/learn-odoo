@@ -13,7 +13,7 @@ class HospitalPatient(models.Model):
     date_of_birth = fields.Date(string='Date of Birth')
     ref = fields.Char(string='Reference',
                       tracking=True,
-                      default=lambda self: 'REF' + str(len(self.env['hospital.patient'].sudo().search([])) + 1).zfill(4))
+                      )
     age = fields.Integer(string='Age', compute='_compute_age', tracking=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')],
                               string='Gender',
@@ -28,7 +28,7 @@ class HospitalPatient(models.Model):
 
     @api.model
     def create(self, vals):
-        print('aufal marom', vals)
+        vals['ref'] = self.env['ir.sequence'].next_by_code('anjay.patient')
         return super(HospitalPatient, self).create(vals)
 
     @api.depends('date_of_birth')

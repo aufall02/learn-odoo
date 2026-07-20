@@ -49,7 +49,7 @@
 
         <record id="wizard_training_list_action" model="ir.actions.act_window">
             <field name="name">Tambah Banyak Peserta</field>
-            <field name="res_model">wizard.training</field>
+            <field name="res_model">training.wizard</field>
             <field name="view_mode">form</field>
             <field name="view_id" ref="wizard_training_view_form_list"/>
             <field name="target">new</field>

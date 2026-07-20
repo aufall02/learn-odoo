@@ -2,4 +2,4 @@
 
 from . import controllers
 from . import models
-form . import wizard
+from . import wizards

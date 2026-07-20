@@ -31,6 +31,7 @@ Long description of module's purpose
         "views/training_session.xml",
         'views/views.xml',
         'views/templates.xml',
+        'wizards/training_wizard.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

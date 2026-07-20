@@ -8,3 +8,4 @@ access_training_city,training.city,model_training_city,base.group_user,1,1,1,1
 access_training_district,training.district,model_training_district,base.group_user,1,1,1,1
 access_training_village,training.village,model_training_village,base.group_user,1,1,1,1
 access_training_participant,training.participant,model_training_participant,base.group_user,1,1,1,1
+access_training_wizard,training.wizard,model_training_wizard,group_manager,1,1,1,1

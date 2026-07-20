@@ -1,1 +1,1 @@
-import . training_wizard
+import . from training_wizard

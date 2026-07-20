@@ -12,4 +12,5 @@ class TrainingWizard(models.TransientModel):
     participant_ids = fields.Many2many(comodel_name='training.participant', string='Peserta Training')
 
     def add_participant(self):
-        self.session_id.participant_ids |= self.participant_ids 
+        self.session_id.participant_ids |= self.participant_ids
+        return {"type": "ir.actions.act_window_close"} 

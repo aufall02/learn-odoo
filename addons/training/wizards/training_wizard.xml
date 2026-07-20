@@ -24,7 +24,6 @@
             <field name="view_mode">form</field>
             <field name="target">new</field>
             <field name="binding_model_id" ref="model_training_session" />
-            <field name="view_mode">form</field>
             <field name="binding_view_types">form</field>
             
         </record>

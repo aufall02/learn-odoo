@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <activity string="Appointments">
                 <field name="patient_id"/>
+                <field name="ref"/>
                 <template>
                 <div t-name="activity-box">
                     <img t-att-src="activity_image('hospital.patient','image', record.patient_id.raw_value)" t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value" />

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "training",
+    'name': "om_odoo_inheritence",
 
     'summary': "Short (1 phrase/line) summary of the module's purpose",
 
@@ -8,7 +8,7 @@
 Long description of module's purpose
     """,
 
-    'author': "PT Karyatama solusi indo",
+    'author': "My Company",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -16,25 +16,19 @@ Long description of module's purpose
     # for the full list
     'category': 'Uncategorized',
     'version': '0.1',
-    'license': 'LGPL-3',
+
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','sale','sale_stock'],
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
-        'views/menu_training.xml',
-        'views/training_course.xml',
-        "views/instructor.xml",
-        "views/region.xml",
-        "views/participant.xml",
-        "views/training_session.xml",
+        # 'security/ir.model.access.csv',
         'views/sale_order_view.xml',
         'views/templates.xml',
-        'wizards/training_wizard.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
 }
+

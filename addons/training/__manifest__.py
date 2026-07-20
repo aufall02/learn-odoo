@@ -29,7 +29,7 @@ Long description of module's purpose
         "views/region.xml",
         "views/participant.xml",
         "views/training_session.xml",
-        'views/sale_order_view.xml',
+        # 'views/sale_order_view.xml',
         'views/templates.xml',
         'wizards/training_wizard.xml'
     ],

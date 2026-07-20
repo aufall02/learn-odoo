@@ -6,7 +6,6 @@
             <field name="model">training.wizard</field>
             <field name="arch" type="xml">
                 <form string="">
-                    <form string="">
                     <group>
                         <field name="session_id"/>
                         <field name="participant_ids"/>
@@ -15,8 +14,6 @@
                         <button name="add_participant" string="Tambah Peserta" type="object" class="btn-primary"/>
                         <button string="cancel" class="btn-secondary" special="cancel"/>
                     </footer>
-                </form>
-
                 </form>
             </field>
         </record>
@@ -31,8 +28,5 @@
             <field name="binding_view_types">form</field>
             
         </record>
-
-        <menuitem id="training_sessions" name="Training Sessions" parent="training_menu_categ"
-                  action="training_session_action" sequence="30"/>
     </data>
 </odoo>

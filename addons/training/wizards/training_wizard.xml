@@ -20,7 +20,7 @@
 
         <record id="wizard_training_view_form_list" model="ir.ui.view">
             <field name="name">wizard.training.view.form.list</field>
-            <field name="model">wizard.training</field>
+            <field name="model">training.wizard</field>
             <field name="arch" type="xml">
                 <form string="">
                     <group>

@@ -64,7 +64,7 @@ class HospitalAppointment(models.Model):
         for rec in self:
             rec.status = "done"
     def action_cancel(self):
-        return self.ref('om_hospital.action_cancel_appointment')
+        return self.env.ref('om_hospital.action_cancel_appointment')
 
 class AppointmentPharmacyLines(models.Model):
     _name   = "appointment.pharmacy.lines"

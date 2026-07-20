@@ -3,19 +3,19 @@
     <record id="view_hospital_appointment_activity" model="ir.ui.view">
          <field name="name">hospital.appointment.activity</field>
         <field name="model">hospital.appointment</field>
- <field name="arch" type="xml">
-    <activity string="Appointments">
-        <field name="patient_id"/>
-        <template>
-        <div t-name="activity-box">
-            <img t-att-src="activity_image('hospital.patient','avatar_128', record.patient_id.raw_value)" t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value" />
-            <div>
-                <field name="ref" display="full"/>
-            </div>
-        </div>
-        </template> 
-    </activity>
- </field>
+        <field name="arch" type="xml">
+            <activity string="Appointments">
+                <field name="patient_id"/>
+                <template>
+                <div t-name="activity-box">
+                    <img t-att-src="activity_image('hospital.patient','image', record.patient_id.raw_value)" t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value" />
+                    <div>
+                        <field name="ref" display="full"/>
+                    </div>
+                </div>
+                </template> 
+            </activity>
+        </field>
     </record>
 
     <record id="view_hospital_appointment_list" model="ir.ui.view">

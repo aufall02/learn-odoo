@@ -44,6 +44,6 @@
             </p>
         </field>
     </record>
-    <menuitem id="menu_configuration_patient_tag" name="Patient Tag" parent="menu_configuration" action="action_hospital_female_patient"
+    <menuitem id="menu_configuration_patient_tag" name="Patient Tag" parent="menu_configuration" action="action_patient_tag"
               sequence="3"/>
 </odoo>

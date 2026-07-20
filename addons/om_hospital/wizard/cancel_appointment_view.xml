@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!-- 
+    <record id="view_patient_tag_list" model="ir.ui.view">
+        <field name="name">patient.tag.list</field>
+        <field name="model">patient.tag</field>
+        <field name="arch" type="xml">
+            <list>
+           
+                <field name="name"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>     -->
+
+    <record id="view_cancel_appointment_form" model="ir.ui.view">
+        <field name="name">cancel.appointment.form</field>
+        <field name="model">cancel.appointment.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="appointment_id" />
+                    </group>
+                    <group></group>
+                </group>
+                
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cancel_appointment" model="ir.actions.act_window">
+        <field name="name">Cancelation Appointment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cancel.appointment.wizard</field>
+        <field name="view_mode">form</field>
+    </record>
+</odoo>

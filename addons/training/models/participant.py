@@ -10,6 +10,7 @@ class TrainingParticipant(models.Model):
                                  string='Partner',
                                  required=True,
                                  ondelete='cascade')
+    no_participant = fields.Char(string='No. Participant', readonly=True)
     place_of_birth = fields.Char(string='Place of Birth')
     date_of_birth = fields.Date(string='Date of Birth')
     education = fields.Selection([('sd', 'SD'),
@@ -22,3 +23,8 @@ class TrainingParticipant(models.Model):
     is_married = fields.Boolean(string='Married')
     spouse_name = fields.Char(string='Partner Name')
     spouse_phone = fields.Char(string='Phone Number')
+
+    @api.model
+    def create(self, vals):
+        vals['no_participant'] = self.env['ir.sequence'].next_by_code('training.participant')
+        return super(TrainingParticipant, self).create(vals)

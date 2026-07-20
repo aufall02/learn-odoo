@@ -178,3 +178,195 @@ class SaleOrderLine(models.Model):
 ---
 
 *Sumber: Odoo Mates — Video 21, 22, 23*
+
+
+---
+
+# Odoo List View Enhancement - vidio 38 - 40
+### Membuat List View Lebih Informatif & User Friendly
+
+---
+
+## Agenda
+
+1. Give Color for List View
+2. Widget List Activity
+3. Dynamic List View (Optional Columns)
+
+---
+
+## 1. Give Color for List View
+
+### Apa itu?
+Fitur untuk memberikan warna pada baris list view berdasarkan kondisi tertentu, sehingga user bisa langsung mengetahui status record **tanpa membuka satu per satu**.
+
+### Kenapa Perlu?
+- User langsung tau status record dari warna
+- Meningkatkan efisiensi & UX
+- Mengurangi kesalahan baca data
+
+### Cara Pakai
+
+```xml
+<list decoration-success="status == 'done'"
+      decoration-warning="status == 'in_consultation'"
+      decoration-danger="status == 'cancel'"
+      decoration-info="status == 'draft'">
+    <field name="patient_id"/>
+    <field name="status"/>
+</list>
+```
+
+### Decoration yang Tersedia
+
+| Decoration | Warna | Contoh Penggunaan |
+|---|---|---|
+| `decoration-success` | Hijau | Status selesai/done |
+| `decoration-warning` | Kuning | Status pending/proses |
+| `decoration-danger` | Merah | Status cancel/error |
+| `decoration-info` | Biru | Status draft/baru |
+| `decoration-muted` | Abu-abu | Data tidak aktif |
+| `decoration-bf` | **Bold** | Data penting |
+| `decoration-it` | *Italic* | Catatan/keterangan |
+
+### Hasil
+
+```
+✅ Hijau  → Appointment Done
+⚠️ Kuning → In Consultation
+❌ Merah  → Cancelled
+ℹ️ Biru   → Draft
+```
+
+---
+
+## 2. Widget List Activity
+
+### Apa itu?
+Widget khusus yang menampilkan **ikon aktivitas** langsung di list view, sehingga user bisa melihat & menjadwalkan aktivitas tanpa membuka form record.
+
+### Kenapa Perlu?
+- Tracking aktivitas lebih efisien
+- User tidak perlu buka record satu per satu
+- Terintegrasi dengan sistem activity Odoo
+
+### Cara Pakai
+
+```xml
+<!-- Di list view -->
+<list>
+    <field name="patient_id"/>
+    <field name="activity_ids" widget="list_activity"/>
+</list>
+```
+
+### Syarat Wajib di Model
+
+```python
+class HospitalPatient(models.Model):
+    _name = 'hospital.patient'
+    
+    # Wajib inherit ini!
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+```
+
+### Schedule Activity via Code
+
+```python
+def action_confirm(self):
+    self.activity_schedule(
+        'mail.mail_activity_data_todo',
+        summary='Appointment Confirmed',
+        note='Patient has been confirmed',
+        user_id=self.env.user.id,
+    )
+```
+
+### Tipe Activity Bawaan Odoo
+
+| XML ID | Keterangan |
+|---|---|
+| `mail.mail_activity_data_todo` | To-Do |
+| `mail.mail_activity_data_call` | Phone Call |
+| `mail.mail_activity_data_meeting` | Meeting |
+| `mail.mail_activity_data_email` | Email |
+
+---
+
+## 3. Dynamic List View
+
+### Apa itu?
+Fitur yang memungkinkan **user memilih sendiri kolom** mana yang ingin ditampilkan di list view, sesuai kebutuhan masing-masing.
+
+### Kenapa Perlu?
+- Tampilan lebih fleksibel per kebutuhan user
+- Kolom tidak terlalu penuh/crowded
+- Setiap user bisa punya preferensi berbeda
+
+### Cara Pakai
+
+```xml
+<list>
+    <field name="patient_id"        optional="show"/>
+    <field name="appointment_time"  optional="show"/>
+    <field name="booking_date"      optional="show"/>
+    <field name="activity_ids"      optional="show" widget="list_activity"/>
+    <field name="status"            optional="hide"/>
+</list>
+```
+
+### Perbedaan `show` vs `hide`
+
+| Value | Default | Keterangan |
+|---|---|---|
+| `optional="show"` | Tampil ✅ | Bisa disembunyikan user |
+| `optional="hide"` | Sembunyi | Bisa ditampilkan user |
+| *(tanpa optional)* | Tampil | Tidak bisa diubah user |
+
+### Cara User Menggunakannya
+```
+List View → Icon Kolom (pojok kanan atas tabel)
+         → Centang/uncentang kolom yang diinginkan
+         → Preferensi tersimpan otomatis per user
+```
+
+---
+
+## Kombinasi Ketiganya
+
+```xml
+<list decoration-success="status == 'done'"
+      decoration-warning="status == 'in_consultation'"
+      decoration-danger="status == 'cancel'"
+      decoration-info="status == 'draft'">
+
+    <field name="patient_id"       optional="show"/>
+    <field name="appointment_time" optional="show"/>
+    <field name="booking_date"     optional="show"/>
+    <field name="activity_ids"     optional="show" widget="list_activity"/>
+    <field name="status"
+           optional="show"
+           decoration-info="status == 'draft'"
+           decoration-success="status == 'done'"
+           decoration-warning="status == 'in_consultation'"
+           decoration-danger="status == 'cancel'"
+           widget="badge"/>
+</list>
+```
+
+---
+
+## Kesimpulan
+
+| Fitur | Manfaat Utama |
+|---|---|
+| **Give Color** | User langsung tau status dari warna |
+| **Widget Activity** | Tracking aktivitas tanpa buka form |
+| **Dynamic Columns** | Tampilan fleksibel sesuai kebutuhan user |
+
+### Key Takeaway
+> Ketiga fitur ini berfokus pada **UX & Efisiensi** — membuat user bekerja lebih cepat dan nyaman tanpa perlu buka record satu per satu.
+
+---
+
+*Odoo List View Enhancement — 2026*

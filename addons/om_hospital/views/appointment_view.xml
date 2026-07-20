@@ -1,24 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="view_hospital_appointment_activity" model="ir.ui.view">
-         <field name="name">hospital.appointment.activity</field>
-        <field name="model">hospital.appointment</field>
-        <field name="arch" type="xml">
-            <activity string="Appointments">
-                <field name="patient_id"/>
-                <field name="ref"/>
-                <templates>
-                <div t-name="activity-box">
-                    <img t-att-src="activity_image('hospital.patient','image', record.patient_id.raw_value)" t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value" />
-                    <div>
-                        <field name="ref" display="full"/>
-                    </div>
-                </div>
-                </templates> 
-            </activity>
-        </field>
-    </record>
-
     <record id="view_hospital_appointment_list" model="ir.ui.view">
         <field name="name">hospital.appointment.list</field>
         <field name="model">hospital.appointment</field>
@@ -51,7 +32,7 @@
                         <button name="action_in_consultation" string="In Consultation" type="object" invisible="status != 'draft'"/>
                         <button name="action_done" string="Mark as Done" type="object" invisible="status != 'in_consultation'"
                                 data-hotkey="v"/>
-                        
+
                         <button name="%(om_hospital.action_cancel_appointment)d" string="Cancel" type="action" invisible="status not in ('draft', 'in_consultation')"/>
                         <!-- <button name="action_cancel" string="Cancel" type="object" invisible="status not in ('draft', 'in_consultation')"/> -->
                         <field name="status" widget="statusbar"
@@ -66,6 +47,7 @@
                     <group>
                         <group>
                             <field name="patient_id"/>
+                            <field name="testing"/>
                             <field name="ref"/>
                             <field name="doctor_id"/>
                             <field name="gender"/>
@@ -83,7 +65,9 @@
                                     class="oe_highlight"
                                     confirm="Are you sure you want to navigate to the patient form?"
                                     help="This will navigate to the patient form"/>
+
                         </group>
+
                     </group>
                     <notebook>
                         <page name="prescription" string="Prescription">
@@ -121,8 +105,10 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <search>
+
             </search>
         </field>
+
     </record>
 
     <record id="action_hospital_appointment" model="ir.actions.act_window">
@@ -137,7 +123,6 @@
             </p>
         </field>
     </record>
-
     <menuitem id="menu_patient_appointment" name="Appointment" parent="menu_appointment"
               action="action_hospital_appointment"
               sequence="4"/>

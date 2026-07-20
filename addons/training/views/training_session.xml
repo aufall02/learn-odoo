@@ -5,23 +5,32 @@
             <field name="name">training.session.view.list</field>
             <field name="model">training.session</field>
             <field name="arch" type="xml">
-                <list>
-                    <!-- Add your fields here -->
+                <list decoration-danger="total_participant==0">
                     <field name="start_date"/>
                     <field name="name"/>
                     <field name="duration"/>
                     <field name="seats"/>
+                     <field name="total_participant"/>
                     <field name="instructor_id"/>
+
                 </list>
             </field>
         </record>
-        <!-- training.session form view -->
         <record id="training_session_view_form" model="ir.ui.view">
             <field name="name">training.session.view.form</field>
             <field name="model">training.session</field>
             <field name="arch" type="xml">
                 <form string="">
+
+                    <header>
+                        <button string="Process" name="action_confirm" type="object" status="draft"/>
+                        <button string="done" name="action_done" type="object" status="confirm"/>
+                        <button string="Reset" name="action_draft" type="object" status="confirm,done"/>
+                        <field name="status" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                    </header>
+
                     <sheet>
+                        <widget name="web_ribbon" text="Selesai" bg_color="bg-info" invisible="not status == 'done'"/>
                         <group string="Course Information">
                             <group>
                                 <field name="start_date"/>
@@ -41,9 +50,7 @@
                                     <field name="instructor_phone"/>
                                     <field name="instructor_mail"/>
                                 </group>
-
                             </group>
-
                         </group>
                         <notebook>
                             <page string="Participants">
@@ -57,6 +64,7 @@
                             </page>
                         </notebook>
                     </sheet>
+
                 </form>
             </field>
         </record>

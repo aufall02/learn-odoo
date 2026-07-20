@@ -11,7 +11,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
-                <field name="description"/>
+                <field name="description" widget="text"/>
                 <field name="trainer_id"/>
             </list>
         </field>

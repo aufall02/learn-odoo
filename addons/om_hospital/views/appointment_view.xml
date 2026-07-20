@@ -7,14 +7,14 @@
             <activity string="Appointments">
                 <field name="patient_id"/>
                 <field name="ref"/>
-                <template>
+                <templates>
                 <div t-name="activity-box">
                     <img t-att-src="activity_image('hospital.patient','image', record.patient_id.raw_value)" t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value" />
                     <div>
                         <field name="ref" display="full"/>
                     </div>
                 </div>
-                </template> 
+                </templates> 
             </activity>
         </field>
     </record>

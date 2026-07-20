@@ -52,7 +52,7 @@
                         <button name="action_done" string="Mark as Done" type="object" invisible="status != 'in_consultation'"
                                 data-hotkey="v"/>
                         
-                        <button name="%(om_hospital.action_cancel_appointment)d" string="Cancel" type="object" invisible="status not in ('draft', 'in_consultation')"/>
+                        <button name="%(om_hospital.action_cancel_appointment)d" string="Cancel" type="action" invisible="status not in ('draft', 'in_consultation')"/>
                         <!-- <button name="action_cancel" string="Cancel" type="object" invisible="status not in ('draft', 'in_consultation')"/> -->
                         <field name="status" widget="statusbar"
                                statusbar_visible="draft,in_consultation,done"

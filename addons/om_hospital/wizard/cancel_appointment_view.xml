@@ -24,6 +24,10 @@
                     </group>
                     <group></group>
                 </group>
+                <footer>
+                        <button name="action_cancel" string="Cancel Appointment" type="object" class="btn-primary" data-hotkey="q"/>
+                        <button string="cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
                 
             </form>
         </field>
@@ -34,5 +38,6 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">cancel.appointment.wizard</field>
         <field name="view_mode">form</field>
+        <field name="target">new</field>
     </record>
 </odoo>

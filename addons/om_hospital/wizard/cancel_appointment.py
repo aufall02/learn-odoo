@@ -5,3 +5,7 @@ class CancelAppointmentWizard(models.Model):
     _description = "Cancel appointment wizard"
 
     appointment_id = fields.Many2one('hospital.appointment', string='Appointment')
+
+
+    def action_cancel(self):
+        return

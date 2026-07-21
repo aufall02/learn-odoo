@@ -5,9 +5,8 @@ from odoo import models, fields, api
 
 class HospitalPatient(models.Model):
     _name = 'hospital.patient'
-    _inherit = ['mail.thread','mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Hospital Patient'
-
 
     name = fields.Char(string='Patient Name', tracking=True)
     date_of_birth = fields.Date(string='Date of Birth')
@@ -24,7 +23,6 @@ class HospitalPatient(models.Model):
     appointment_id = fields.Many2one('hospital.appointment', string='Appointment')
     image = fields.Image(string="Image")
     tag_ids = fields.Many2many('patient.tag', string="Tags")
-
 
     @api.model
     def create(self, vals):
@@ -45,3 +43,19 @@ class HospitalPatient(models.Model):
                 rec.age = today.year - rec.date_of_birth.year
             else:
                 rec.age = 1
+
+    # def name_get(self):
+    #     return [(record.id, "%s (%s)" % (record.name, record.ref)) for record in self]
+
+    def _compute_display_name(self):
+        for rec in self:
+            if rec.ref and rec.name:
+                rec.display_name = "%s:%s" % (rec.ref, rec.name)
+            elif rec.ref:
+                rec.display_name = rec.ref
+            elif rec.name:
+                rec.display_name = rec.name
+            else:
+                rec.display_name = "New"
+
+

@@ -19,6 +19,8 @@ class CancelAppointmentWizard(models.Model):
 
 
     def action_cancel(self):
-        return
+        self.appointment_id.status = 'cancel'
+        return {'type': 'ir.actions.act_window_close'}
+
 
 

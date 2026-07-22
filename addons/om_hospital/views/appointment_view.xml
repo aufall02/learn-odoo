@@ -5,8 +5,13 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <list decoration-success="gender == 'male'" sample="1" multi_edit="1">
-                <field name="patient_id" />
-                <field name="ref" optional="show" />
+                <header>
+                    <button name="action_done" string="Mark As Done" class="btn-primary"
+                            type="object"/>
+                </header>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="ref" optional="show"/>
                 <field name="doctor_id" widget="many2one_avatar_user"/>
                 <field name="gender" optional="hide"/>
                 <field name="appointment_time"/>
@@ -29,11 +34,23 @@
             <form>
                 <sheet>
                     <header>
-                        <button name="action_in_consultation" string="In Consultation" type="object" invisible="status != 'draft'"/>
-                        <button name="action_done" string="Mark as Done" type="object" invisible="status != 'in_consultation'"
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <button name="action_in_consultation" string="In Consultation" type="object"
+                                invisible="status != 'draft'"/>
+                        <button name="action_done" string="Mark as Done" type="object"
+                                invisible="status != 'in_consultation'"
                                 data-hotkey="v"/>
 
-                        <button name="%(om_hospital.action_cancel_appointment)d" string="Cancel" type="action" invisible="status not in ('draft', 'in_consultation')"/>
+                        <button name="%(om_hospital.action_cancel_appointment)d"
+                                string="Cancel"
+                                type="action"
+                                invisible="status not in ('draft', 'in_consultation')"
+                                context="{'default_appointment_id': id}"
+                        />
                         <!-- <button name="action_cancel" string="Cancel" type="object" invisible="status not in ('draft', 'in_consultation')"/> -->
                         <field name="status" widget="statusbar"
                                statusbar_visible="draft,in_consultation,done"
@@ -47,7 +64,7 @@
                     <group>
                         <group>
                             <field name="patient_id"/>
-<!--                            <field name="testing"/>-->
+                            <!--                            <field name="testing"/>-->
                             <field name="ref"/>
                             <field name="doctor_id"/>
                             <field name="gender"/>
@@ -71,20 +88,25 @@
                     </group>
                     <notebook>
                         <page name="prescription" string="Prescription">
-                            <field name="prescription" options="{'collaborative': true, 'resizable': true, 'codeview':true}"/>
+                            <field name="prescription"
+                                   options="{'collaborative': true, 'resizable': true, 'codeview':true}"/>
                         </page>
                         <page name="pharmacy" string="Pharmacy">
                             <field name="pharmacy_line_ids">
                                 <list editable="bottom">
                                     <field name="product_id"/>
-                                    <field name="price_unit" column_invisible="parent.hide_sales_price"/>
+                                    <field name="price_unit" column_invisible="parent.hide_sales_price" widget="monetary"/>
                                     <field name="qty"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                     <field name="price_subtotal"/>
                                 </list>
                                 <form>
                                     <group>
                                         <field name="product_id"/>
                                         <field name="price_unit"/>
                                         <field name="qty"/>
+                                        <field name="price_subtotal"/>
+
                                     </group>
                                 </form>
                             </field>

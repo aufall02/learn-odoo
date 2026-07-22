@@ -19,7 +19,7 @@ class HospitalPatient(models.Model):
                               tracking=True,
                               default='female')
     active = fields.Boolean(string='active', default=True, tracking=True)
-    street = fields.Char(string='Address')
+    street = fields.Char(string='Address',  tracking=1)
     appointment_id = fields.Many2one('hospital.appointment', string='Appointment')
     image = fields.Image(string="Image")
     tag_ids = fields.Many2many('patient.tag', string="Tags")
@@ -31,7 +31,7 @@ class HospitalPatient(models.Model):
 
     def write(self, vals):
         print('Write methode')
-        if not self.ref and not vals.get('ref'):
+        if not self.ref : # and not vals.get('ref'):
             vals['ref'] = self.env['ir.sequence'].next_by_code('anjay.patient')
         return super(HospitalPatient, self).write(vals)
 
@@ -50,12 +50,14 @@ class HospitalPatient(models.Model):
     def _compute_display_name(self):
         for rec in self:
             if rec.ref and rec.name:
-                rec.display_name = "%s:%s" % (rec.ref, rec.name)
+                rec.display_name = f'{rec.name}:{rec.age}'
             elif rec.ref:
                 rec.display_name = rec.ref
             elif rec.name:
                 rec.display_name = rec.name
             else:
                 rec.display_name = "New"
+
+
 
 

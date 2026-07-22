@@ -9,7 +9,7 @@
     'description': """Hospital Management System""",
     'data': [
         'security/ir.model.access.csv',
-        # 'data/patient_tag_data.csv',
+        'data/patient.tag.csv',
         'data/patient_tag_data.xml',
         'data/sequence_data.xml',
         'wizard/cancel_appointment_view.xml',
@@ -17,7 +17,8 @@
         'views/patient_view.xml',
         'views/female_patient_view.xml',
         'views/appointment_view.xml',
-        'views/patient_tag.xml'
+        'views/patient_tag.xml',
+        'views/playground_view.xml',
     ],
     'depends': ['base','mail','product'],
     'demo': [],
